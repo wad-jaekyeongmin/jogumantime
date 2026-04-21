@@ -1,0 +1,92 @@
+# 우선순위 규칙 설정
+priority:
+  # 채널별 기본 가중치 (1~10)
+  channel_weights:
+    general: 3
+    dev: 5
+    design: 5
+    urgent: 10
+    random: 1
+
+  # 키워드별 가중치 부스트
+  keyword_boosts:
+    긴급: 10
+    urgent: 10
+    ASAP: 8
+    blocker: 8
+    장애: 10
+    hotfix: 9
+    배포: 6
+    리뷰: 5
+    review: 5
+    FYI: 1
+
+  # 우선순위 임계값 (총점 기준)
+  thresholds:
+    urgent: 25    # 즉시 알림
+    high: 18      # 즉시 알림
+    medium: 10    # 배치 알림
+    low: 0        # 배치 알림
+
+  # AI 분석 활성화 임계값 (MEDIUM 이상만 Claude 분석)
+  ai_analysis_min_score: 10
+
+# 스케줄 설정
+schedule:
+  timezone: "Asia/Seoul"
+
+  # 일일 브리핑
+  daily_briefing:
+    enabled: true
+    time: "07:30"
+    days: ["mon", "tue", "wed", "thu", "fri"]
+
+  # 배치 알림 플러시
+  batch_flush:
+    enabled: true
+    interval_minutes: 10
+    start_hour: 9
+    end_hour: 19
+    days: ["mon", "tue", "wed", "thu", "fri"]
+
+  # 주간 리포트
+  weekly_report:
+    enabled: true
+    day: "thu"
+    time: "18:00"
+
+  # Jira 폴링
+  jira_poll:
+    enabled: true
+    interval_minutes: 3
+
+  # Confluence 폴링
+  confluence_poll:
+    enabled: true
+    interval_minutes: 3
+    # 알림 제외할 페이지 ID (Confluence URL에서 pageId= 뒤 숫자)
+    exclude_page_ids: []
+
+  # Figma 폴링
+  figma_poll:
+    enabled: true
+    interval_minutes: 3
+    file_keys:
+      - "2KyotP1qgljemwuMs86g74"    # 🔥 2026 캐치테이블 4월 TASK
+    page_name_keyword: "경민"
+
+  # 캘린더 동기화
+  calendar_sync:
+    enabled: true
+    interval_minutes: 5
+
+# 알림 설정
+notifications:
+  # 즉시 알림 트리거
+  immediate_triggers:
+    - mention        # @멘션
+    - direct_message # DM
+    - urgent_keyword # 긴급 키워드 포함
+
+  # 배치 알림 최대 보관 개수
+  batch_max_items: 20

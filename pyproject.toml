@@ -1,0 +1,29 @@
+[project]
+name = "work-bot"
+version = "0.1.0"
+description = "업무 스케줄/우선순위 관리 슬랙 봇"
+requires-python = ">=3.11"
+dependencies = [
+    "slack-bolt>=1.18",
+    "slack-sdk>=3.27",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "google-api-python-client>=2.120",
+    "google-auth-oauthlib>=1.2",
+    "google-auth-httplib2>=0.2",
+    "anthropic>=0.40",
+    "apscheduler>=3.10,<4",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "aiosqlite>=0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
